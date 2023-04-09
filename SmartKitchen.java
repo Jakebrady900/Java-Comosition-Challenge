@@ -12,13 +12,22 @@ public class SmartKitchen {
     public CoffeeMaker getBrewMaster() {
         return brewMaster;
     }
-
     public Refrigerator getIceBox() {
         return iceBox;
     }
-
     public Dishwasher getDishWasher() {
         return dishWasher;
+    }
+    public void setKitchenState(boolean coffeeFlag, boolean fridgeFlag, boolean dishwasherFlag) {
+        brewMaster.setHasWorkToDo(coffeeFlag);
+        iceBox.setHasWorkToDo(fridgeFlag);
+        dishWasher.setHasWorkToDo(dishwasherFlag);
+    }
+
+    public void doKitchenWork() {
+        brewMaster.brewCoffee();
+        iceBox.orderFood();
+        dishWasher.doDishes();
     }
 }
 
@@ -29,7 +38,7 @@ class CoffeeMaker {
         this.hasWorkToDo = hasWorkToDo;
     }
 
-    public void brewCofee() {
+    public void brewCoffee() {
         if (hasWorkToDo) {
             System.out.println("Brewing Coffee");
             hasWorkToDo = false;
